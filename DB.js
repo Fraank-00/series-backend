@@ -1,15 +1,17 @@
 const { Sequelize } = require('sequelize')
 require('dotenv').config();
 
-const dbName = process.env.DB_NAME;
-const dbUserName = process.env.DB_USER;
-const dbPassword = process.env.DB_PASSWORD;
-
-const sequelize = new Sequelize(dbName, dbUserName, dbPassword, {
-    host: 'localhost',
-    dialect: 'mysql' //
-});
-
+const sequelize = new Sequelize(
+  process.env.MYSQLDATABASE,
+  process.env.MYSQLUSER,
+  process.env.MYSQLPASSWORD,
+  {
+    host: process.env.MYSQLHOST,
+    port: process.env.MYSQLPORT,
+    dialect: 'mysql',
+    logging: false,
+  }
+);
 
 // Función para probar la conexión a la base de datos
 const DBTest = async () => {
